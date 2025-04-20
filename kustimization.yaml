@@ -1,0 +1,24 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - kustomizations/cilium
+  - kustomizations/cilium-config
+  - kustomizations/headlamp
+  - kustomizations/cloudflared
+
+# configMapGenerator:
+#   - namespace: flux-system
+#     name: flux-values
+#     files: [values.yaml=values/flux-values.yaml]
+
+secretGenerator:
+  - namespace: cloudflared
+    name: cloudflared-secret
+    files: [CLOUDFLARED_TOKEN=.env]
+
+# # Config options
+# generatorOptions:
+#   disableNameSuffixHash: true
+#   annotations:
+#     reflector.v1.k8s.emberstack.com/reflection-allowed: "true"

@@ -1,0 +1,9 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: cilium-config
+  namespace: flux-system
+spec:
+  interval: 5m
+  url: https://raw.githubusercontent.com/Ancitik/flux-catalog/main/charts/cilium-config
+  type: oci 
